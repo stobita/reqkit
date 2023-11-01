@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 100,
         "resizable": true,
         "title": "reqkit",
-        "width": 800
+        "width": 300
       }
     ]
   }
