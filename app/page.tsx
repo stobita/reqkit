@@ -10,6 +10,7 @@ export default function Home() {
     invoke<string>("request", { url })
       .then((res) => {
         console.log(res);
+        setRes(res);
       })
       .catch((err) => {
         console.log(err);
