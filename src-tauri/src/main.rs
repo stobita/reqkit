@@ -13,22 +13,7 @@ fn main() {
 #[tauri::command]
 fn request(url: String) -> String {
     println!("Requesting: {}", url);
-    let response = reqwest::blocking::get(&url);
-    match response {
-        Err(e) => {
-            println!("Error: {:?}", e);
-            return format!("Error: {:?}", e);
-        }
-        Ok(res) => {
-            let parsed_response = res.json::<HashMap<String, String>>();
-            match parsed_response {
-                Err(e) => return format!("Parsing error: {:?}", e),
-                Ok(hash_map) => {
-                    let resp_str = format!("{:#?}", hash_map);
-                    println!("{}", resp_str);
-                    return resp_str;
-                }
-            }
-        }
-    }
+    let response = reqwest::blocking::get(&url).unwrap();
+    println!("status: {}", response.status());
+    return response.text().unwrap();
 }
